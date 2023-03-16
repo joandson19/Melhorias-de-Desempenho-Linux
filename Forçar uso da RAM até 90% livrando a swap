@@ -1,0 +1,15 @@
+Se o seu Debian 11 estiver usando mais swap do que a memória RAM disponível, pode ser necessário ajustar as configurações de gerenciamento de memória para priorizar o uso da RAM.
+
+Aqui estão algumas sugestões:
+
+Ajuste o swappiness - O swappiness é um parâmetro do kernel que controla a frequência com que o sistema operacional usa a memória virtual em relação à memória física. O valor padrão é geralmente definido em 60. Você pode diminuir o valor para que o sistema use mais memória RAM e menos swap. Para fazer isso, abra o arquivo /etc/sysctl.conf em um editor de texto e adicione a seguinte linha no final do arquivo:
+
+# vm.swappiness = 10
+
+Salve o arquivo e execute o comando "sysctl -p" para aplicar as alterações.
+
+Limite o uso de swap - Você também pode limitar o uso de swap no sistema, forçando o kernel a usar mais memória RAM. Para fazer isso, você precisa editar o arquivo /etc/fstab e adicionar a seguinte linha no final do arquivo:
+
+# tmpfs /tmp tmpfs defaults,noatime,nosuid,size=2G 0 0
+
+Esta linha cria um sistema de arquivos temporário em /tmp que usa a memória RAM em vez do swap. Você pode ajustar o tamanho conforme necessário.
